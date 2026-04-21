@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>15 Anos da Gaby</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Impede seleção de texto acidental no celular */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-image: url('imagens/planofundo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Cinzel', serif;
+            background-color: #cce3ce; /* Cor de fallback */
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* --- TELA DE INTRODUÇÃO --- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            background: transparent;
+        }
+
+        .intro-wrapper {
+            position: relative;
+            width: 85%;
+            max-width: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .intro-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            animation: fadeIn 2s ease-out forwards;
+            transform-origin: center;
+        }
+
+        /* Efeito de Brilho (Partículas) */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fcf6ba, 0 0 30px #d4af37;
+            opacity: 0;
+            animation: twinkle 1.5s infinite ease-in-out;
+            z-index: 101;
+        }
+
+        .s1 { top: 10%; left: 15%; animation-delay: 0s; }
+        .s2 { top: 25%; right: 10%; animation-delay: 0.3s; }
+        .s3 { bottom: 15%; left: 20%; animation-delay: 0.7s; }
+        .s4 { bottom: 25%; right: 15%; animation-delay: 0.5s; }
+        .s5 { top: 50%; left: -5%; animation-delay: 0.2s; }
+        .s6 { top: 40%; right: -5%; animation-delay: 0.8s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* --- TELA DE MENU --- */
+        #menu-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            max-width: 300px;
+            padding: 16px 20px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.75);
+            border: 2px solid #d4af37;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-btn:active { transform: scale(0.95); }
+
+        .menu-btn i {
+            font-size: 1.5rem;
+            margin-right: 12px;
+            color: #b58d2a;
+        }
+
+        .menu-btn span {
+            font-size: 1rem;
+            color: #8a641c;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* --- TELA DO PIX --- */
+        #pix-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('imagens/pix.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #cce3ce;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20; 
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .btn-voltar {
+            position: absolute;
+            top: 20px; 
+            left: 10px; 
+            padding: 10px 18px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid #d4af37;
+            border-radius: 30px;
+            color: #8a641c;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn-voltar:active { transform: scale(0.95); }
+        .btn-voltar i { margin-right: 8px; }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .fade-out {
+            animation: cleanFadeOut 1.2s ease-in forwards !important;
+        }
+
+        @keyframes cleanFadeOut {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
+        }
+
+        .show-screen {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="intro-screen">
+            <div class="intro-wrapper">
+                <img src="imagens/introdução.jpg" alt="Introdução" class="intro-image">
+                <div class="sparkle s1"></div>
+                <div class="sparkle s2"></div>
+                <div class="sparkle s3"></div>
+                <div class="sparkle s4"></div>
+                <div class="sparkle s5"></div>
+                <div class="sparkle s6"></div>
+            </div>
+        </div>
+
+        <div id="menu-screen">
+            <button class="menu-btn" onclick="abrirPix()">
+                <i class="fa-brands fa-pix"></i>
+                <span>PIX</span>
+            </button>
+            
+            <a href="https://wa.me/558699536632?text=Ol%C3%A1%21%20Recebi%20o%20convite%20lindo%20dos%2015%20anos%20da%20Gaby%21%20%E2%9C%A8%20Estou%20passando%20para%20confirmar%20que%20eu%20%5B%20VOU%20%2F%20N%C3%83O%20VOU%20%5D." target="_blank" class="menu-btn">
+                <i class="fa-solid fa-check"></i>
+                <span>CONFIRMAR PRESENÇA</span>
+            </a>
+            
+            <a href="https://maps.google.com/?q=COLOQUE_SEU_LINK_DO_GOOGLE_MAPS_AQUI" target="_blank" class="menu-btn">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>LOCALIZAÇÃO</span>
+            </a>
+        </div>
+
+        <div id="pix-screen">
+            <button class="btn-voltar" onclick="fecharPix()">
+                <i class="fa-solid fa-arrow-left"></i> Voltar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Lógica de Animação de Entrada
+        document.addEventListener("DOMContentLoaded", () => {
+            const intro = document.getElementById('intro-screen');
+            const menu = document.getElementById('menu-screen');
+
+            setTimeout(() => {
+                intro.classList.add('fade-out');
+
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                    menu.classList.add('show-screen');
+                }, 1200); 
+            }, 3500);
+        });
+
+        // Funções da Tela PIX
+        function abrirPix() {
+            document.getElementById('menu-screen').classList.remove('show-screen');
+            document.getElementById('pix-screen').classList.add('show-screen');
+        }
+
+        function fecharPix() {
+            document.getElementById('pix-screen').classList.remove('show-screen');
+            document.getElementById('menu-screen').classList.add('show-screen');
+        }
+    </script>
+</body>
+</html>
